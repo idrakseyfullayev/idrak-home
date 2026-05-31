@@ -74,10 +74,18 @@
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            /* Kompüter ekranlarında yan-yana dəqiq 4 məhsul yerləşməsi üçün grid nizamlandı */
+            grid-template-columns: repeat(4, 1fr);
             gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        /* Planşet və mobil ekranlarda görünüşün pozulmaması üçün responsivlik qorundu */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
         }
 
         .product-card {
@@ -92,7 +100,8 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            height: 395px;
+            /* Alt sətirdəki kartların ~20%-nin görünməsi üçün hündürlük 345px-ə optimallaşdırıldı */
+            height: 345px;
         }
 
         .product-card:hover {
@@ -103,7 +112,8 @@
 
         .product-img-box {
             width: 100%;
-            height: 200px;
+            /* Kartın yeni hündürlüyünə uyğun olaraq şəkil qutusu 150px edildi */
+            height: 150px;
             background: #FAFAFA;
             border-radius: 16px;
             display: flex;
@@ -125,7 +135,7 @@
         }
 
         .product-category {
-            font-size: 0.75rem;
+            font-size: 0.60rem;
             text-transform: uppercase;
             color: #A69F98;
             letter-spacing: 1px;
