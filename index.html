@@ -88,6 +88,32 @@
             }
         }
 
+        /* TELEFONLAR ÜÇÜN XÜSUSİ TƏNZİMLƏMƏ (Yan-yana 2 məhsul) */
+        @media (max-width: 480px) {
+            body {
+                padding: 20px 10px;
+            }
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr); /* Yan-yana dəqiq 2 məhsul */
+                gap: 12px; /* Telefon üçün ara boşluğu bir az azaldıldı */
+            }
+            .product-card {
+                height: auto !important; /* Kartın hündürlüyü məzmuna görə avtomatik tənzimlənir */
+                padding: 12px !important; /* Daxili boşluq kiçildildi ki, ekrana sığsın */
+            }
+            .product-img-box {
+                height: 110px !important; /* Şəkil qutusu telefonda bir az kiçildildi */
+                margin-bottom: 8px !important;
+            }
+            .product-title {
+                font-size: 0.85rem !important; /* Yazı ölçüsü telefon üçün optimallaşdırıldı */
+            }
+            .status-badge {
+                padding: 8px 0 !important; /* Düymə ölçüsü telefonda kiçildildi */
+                font-size: 0.8rem !important;
+            }
+        }
+
         .product-card {
             background: #FFFFFF;
             border: 1px solid #F2EFEA;
