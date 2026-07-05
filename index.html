@@ -621,7 +621,22 @@
             // document.getElementById('whatsappLinkBtn').href = whatsappUrl;
 
             // Köhnə 'api.whatsapp.com' əvəzinə modern və sürətli 'wa.me' strukturundan istifadə edirik
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(messageText)}`;
+            // const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(messageText)}`;
+            // document.getElementById('whatsappLinkBtn').href = whatsappUrl;
+
+            // İstifadəçinin mobil cihazda olub-olmadığını yoxlayırıq
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+            let whatsappUrl = '';
+
+            if (isMobile) {
+                // Mobil cihazlar üçün modern və sürətli 'wa.me'
+                whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(messageText)}`;
+            } else {
+                // Kompüterlər (Desktop) üçün birbaşa WhatsApp Web linki
+                whatsappUrl = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(messageText)}`;
+            }
+
             document.getElementById('whatsappLinkBtn').href = whatsappUrl;
 
             document.getElementById('catalogView').classList.add('hidden');
