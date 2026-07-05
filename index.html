@@ -617,7 +617,11 @@
                 messageText += `\nMəhsul kodu: ${product.id}`;
             }
             
-            const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(messageText)}`;
+            // const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(messageText)}`;
+            // document.getElementById('whatsappLinkBtn').href = whatsappUrl;
+
+            // Köhnə 'api.whatsapp.com' əvəzinə modern və sürətli 'wa.me' strukturundan istifadə edirik
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(messageText)}`;
             document.getElementById('whatsappLinkBtn').href = whatsappUrl;
 
             document.getElementById('catalogView').classList.add('hidden');
