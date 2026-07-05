@@ -37,7 +37,7 @@
         <meta name="google-site-verification" content="nZavxK5feJnOt8WigfmLsxjCD4oCH6b0uzf_ZcGNoeQ">
     
         <!-- SEO -->
-        <title>Idrak Home | Premium Ev və Məişət Texnikası</title>
+        <title>Idrak Home - Premium Ev və Məişət Texnikası</title>
     
         <meta
             name="description"
@@ -55,20 +55,23 @@
     
         <!-- Open Graph -->
         <meta property="og:type" content="website">
-        <meta property="og:title" content="Idrak Home | Premium Ev və Məişət Texnikası">
+        <meta property="og:title" content="Idrak Home - Premium Ev və Məişət Texnikası">
         <meta property="og:description" content="Premium ev və məişət texnikası. Sərfəli qiymətlər və WhatsApp ilə sürətli sifariş.">
         <meta property="og:url" content="https://idrakseyfullayev.github.io/idrak-home/">
         <meta property="og:site_name" content="Idrak Home">
     
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="Idrak Home | Premium Ev və Məişət Texnikası">
+        <meta name="twitter:title" content="Idrak Home - Premium Ev və Məişət Texnikası">
         <meta name="twitter:description" content="Premium ev və məişət texnikası. WhatsApp ilə sürətli sifariş.">
     
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+        <link rel="icon" type="image/png" href="favicon.png">
+
     </head>
 
 
@@ -91,6 +94,8 @@
             text-align: center;
             margin-bottom: 40px;
         }
+
+
 
         header h1 {
             font-family: 'Playfair Display', serif;
@@ -204,6 +209,7 @@
             .action-buttons-wrapper {
                 margin-bottom: 12px !important;
             }
+
         }
 
         .product-card {
@@ -499,16 +505,42 @@
         .btn-whatsapp:hover .btn-arrow {
             transform: translateX(5px);
         }
+
+
+        .site-logo{
+            position:absolute;
+            top:-40px;
+            left:20px;
+            width:500px;
+            height:250px;
+            object-fit:contain;
+            z-index:100;
+        }
+
+        @media (max-width:768px){
+            .site-logo{
+                width:50px;
+                height:50px;
+                top:12px;
+                left:12px;
+            }    
+        }
+
     </style>
 </head>
 <body>
 
     <!-- KATALOQ SƏHİFƏSİ -->
     <div id="catalogView">
+
         <header>
+
+            <img src="logo.png" alt="Logo" class="site-logo">
+
             <h1>Idrak Home</h1>
             <p>Premium Ev və Məişət Texnikası</p>
         </header>
+
 
         <div class="search-container">
             <input type="text" id="searchInput" class="search-input" placeholder="Məhsul adı və ya KOD ilə axtarış..." oninput="liveSearch()">
