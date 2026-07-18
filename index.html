@@ -76,6 +76,7 @@
         letter-spacing: 2px;
         color: #1A1A1A;
         margin-bottom: 8px;
+        cursor: pointer;
     }
 
     header p {
@@ -130,7 +131,7 @@
         background: #1A1A1A;
         color: #FFFFFF;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all 0.3s ease, transform 0.5s ease;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -139,11 +140,32 @@
     .search-btn svg {
         width: 20px;
         height: 20px;
+        transition: opacity 0.2s ease;
+    }
+
+    .search-btn .icon-arrow {
+        display: none;
     }
 
     .search-btn:hover {
         background: #D4AF37;
         box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    }
+
+    /* Müasir sayt effekti: fokuslananda incə parıltı + düymə fırlanması */
+    .search-box-wrapper:focus-within {
+        transform: scale(1.01);
+    }
+
+    .search-box-wrapper:focus-within .search-input {
+        border-color: #D4AF37;
+        box-shadow: 0 6px 24px rgba(212, 175, 55, 0.22);
+    }
+
+    .search-box-wrapper:focus-within .search-btn {
+        background: #D4AF37;
+        transform: rotate(360deg);
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
     }
 
     /* --- KATEQORİYA + MƏHSUL LAYOUT --- */
@@ -240,6 +262,12 @@
         .search-btn {
             width: 44px;
             height: 44px;
+        }
+        .search-btn .icon-search {
+            display: none;
+        }
+        .search-btn .icon-arrow {
+            display: block;
         }
         .products-grid {
             grid-template-columns: repeat(2, 1fr);
@@ -339,7 +367,7 @@
 
     .product-price {
         text-align: left;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         font-weight: 700;
         color: #ff8800;
         margin-bottom: 10px;
@@ -605,6 +633,7 @@
         height:250px;
         object-fit:contain;
         z-index:100;
+        cursor:pointer;
     }
 
     @media (max-width:768px){
@@ -625,9 +654,9 @@
 
         <header>
 
-            <img src="logo.png" alt="Logo" class="site-logo">
+            <img src="logo.png" alt="Logo" class="site-logo" onclick="resetToHome()">
 
-            <h1>Idrak Home</h1>
+            <h1 onclick="resetToHome()">Idrak Home</h1>
             <p>Premium Ev və Məişət Texnikası</p>
         </header>
 
@@ -636,9 +665,13 @@
             <div class="search-box-wrapper">
                 <input type="text" id="searchInput" class="search-input" placeholder="Məhsul adı və ya KOD ilə axtarış..." onkeypress="if(event.key==='Enter'){filterProducts();}">
                 <button type="button" class="search-btn" onclick="filterProducts()" aria-label="Axtar">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg class="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
                     </svg>
                 </button>
             </div>
@@ -839,6 +872,8 @@
             currentCategory = cat;
             document.querySelectorAll('.category-item').forEach(i => i.classList.remove('active'));
             el.classList.add('active');
+            // Kateqoriya dəyişəndə axtarış sahəsi də təmizlənir ki, bütün məhsullar görünsün
+            document.getElementById('searchInput').value = '';
             filterProducts();
         }
 
@@ -900,6 +935,21 @@
             document.getElementById('productView').classList.add('hidden');
             document.getElementById('catalogView').classList.remove('hidden');
             history.pushState("", document.title, window.location.pathname + window.location.search);
+        }
+
+        // Logo şəklinə və ya "Idrak Home" başlığına basanda sayt başa qayıdır və bütün məhsullar göstərilir
+        function resetToHome() {
+            currentCategory = 'all';
+            const searchBox = document.getElementById('searchInput');
+            if (searchBox) searchBox.value = '';
+
+            document.querySelectorAll('.category-item').forEach(i => i.classList.remove('active'));
+            const firstCategory = document.querySelector('.category-item');
+            if (firstCategory) firstCategory.classList.add('active');
+
+            filterProducts();
+            showCatalog();
+            window.scrollTo(0, 0);
         }
 
         function checkRoute() {
